@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+<center>
+    <h1>
+        アップされた写真は{{score}}％の確率で{{result}}です。
+    </h1>
+    <img src= "{{ img_path }}" style="margin: 20px; vertical-align: bottom; width: 200px;">
+    <a href="/">他の犬種も予測してみる</a>
+</center>
+{% endblock %}
