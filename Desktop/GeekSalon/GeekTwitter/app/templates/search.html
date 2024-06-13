@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>検索結果</h2>
+<form method="POST">
+<div class="form-group">
+    <input type="text" name="search_query" class="form-control" placeholder="検索キーワード">
+</div>
+<button type="submit" class="btn btn-primary">検索する</button>
+</form>
+<hr>
+<h3>検索結果一覧</h3>
+{% if posts %}
+{% for post in posts %}
+    <div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title"><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h5>
+        <p class="card-text">{{ post.content }}</p>
+        <p class="card-text">投稿者: {{ post.author.username }}</p>
+        <p class="card-text">投稿日時: {{ post.date_posted }}</p>
+    </div>
+    </div>
+{% endfor %}
+{% else %}
+<p>該当する投稿はありません。</p>
+{% endif %}
+{% endblock %}
