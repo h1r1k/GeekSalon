@@ -5,7 +5,7 @@
 <p>以下の投稿を削除しますか？</p>
 <h3>{{ post.title }}</h3>
 <p>{{ post.content }}</p>
-<form method="POST" action="{{ url_for('post_delete', post_id=post.id) }}">
-<button type="submit" class="btn btn-danger">削除する</button>
+<form method="GET" action="{{ url_for('post_delete', post_id=post.id) }}">
+    <input type="submit" value="削除する" class="btn btn-danger">
 </form>
 {% endblock %}

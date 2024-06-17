@@ -3,19 +3,22 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import LoginForm, RegistrationForm, PostForm
-from models import db, User, Post
+from models import db, User, Post  # dbをインポート
 
 # Flaskアプリケーションの初期化
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key_here'  # セッション管理用の秘密鍵
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///geektwitter.db'  # データベースのURI
-db = SQLAlchemy(app)  # SQLAlchemyオブジェクトの作成
+
+db.init_app(app)  # 既存のdbインスタンスを初期化
+
 login_manager = LoginManager(app)  # Flask-Loginの初期化
 login_manager.login_view = 'login'  # ログインが必要なページへのリダイレクト先
 
 # データベースの初期化
 with app.app_context():
-    db.create_all()
+    db.drop_all()  # 既存のデータベースを削除
+    db.create_all()  # 新しいスキーマでデータベースを再作成
 
 # ユーザー読み込み関数
 @login_manager.user_loader
@@ -67,7 +70,7 @@ def post_edit(post_id):
         form.content.data = post.content
     return render_template('post_edit.html', form=form, post=post)  # フォームを渡してテンプレートを表示
 
-@app.route('/post/<int:post_id>/delete', methods=['POST'])
+@app.route('/post/<int:post_id>/delete', methods=['GET'])
 @login_required  # ログイン必須
 def post_delete(post_id):
     post = Post.query.get_or_404(post_id)  # 指定されたIDの投稿を取得、存在しない場合は404エラー
@@ -121,3 +124,6 @@ def search():
     else:
         posts = []
     return render_template('search.html', posts=posts, search_query=search_query)  # テンプレートに検索結果を渡して
+
+if __name__ == '__main__':
+    app.run(debug=True)

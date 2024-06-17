@@ -8,7 +8,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('ログイン')
 
 class RegistrationForm(FlaskForm):
-    username = StringField('ユーザ名', validators=[DataRequired(), Length(min=4, max=64)])
+    username = StringField('ユーザ名', validators=[DataRequired(), Length(min=3, max=64)])
     password = PasswordField('パスワード', validators=[DataRequired()])
     submit = SubmitField('新規登録')
 

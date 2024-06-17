@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+import pytz
 
 db = SQLAlchemy()
 
@@ -17,9 +18,12 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+# デフォルトのタイムゾーンを取得する関数
+def get_current_time():
+    return datetime.now(pytz.timezone('Asia/Tokyo'))
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    date_posted = db.Column(db.DateTime, default=get_current_time)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

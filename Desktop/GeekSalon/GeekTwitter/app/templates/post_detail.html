@@ -4,5 +4,5 @@
 <h2>{{ post.title }}</h2>
 <p>{{ post.content }}</p>
 <p>投稿者: {{ post.author.username }}</p>
-<p>投稿日時: {{ post.date_posted }}</p>
+<p>投稿日時: {{ post.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</p>
 {% endblock %}

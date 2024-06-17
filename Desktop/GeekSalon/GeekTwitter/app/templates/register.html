@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>新規登録</h2>
-<form method="POST">
-{{ form.hidden_tag() }}
-<div class="form-group">
-    {{ form.username.label }}<br>
-    {{ form.username(size=50, class="form-control") }}<br>
-    {% for error in form.username.errors %}
-    <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
+<div class="container center-container">
+    <div class="center-form text-center">
+        <i class="fa-brands fa-twitter fa-bounce fa-2xl" style="color: #74C0FC;"></i>
+        <h2>サインアップ</h2>
+        <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.username.label }}<br>
+            {{ form.username(size=50, class="form-control") }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.password.label }}<br>
+            {{ form.password(class="form-control") }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-custom">サインアップ</button>
+        </form>
+    </div>
 </div>
-<div class="form-group">
-    {{ form.password.label }}<br>
-    {{ form.password(class="form-control") }}<br>
-    {% for error in form.password.errors %}
-    <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-</div>
-<button type="submit" class="btn btn-primary">登録する</button>
-</form>
 {% endblock %}

@@ -5,10 +5,12 @@
 {% for post in posts %}
 <div class="card mb-3">
     <div class="card-body">
-    <h5 class="card-title"><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h5>
-    <p class="card-text">{{ post.content }}</p>
-    <p class="card-text">投稿者: {{ post.author.username }}</p>
-    <p class="card-text">投稿日時: {{ post.date_posted }}</p>
+        <h5 class="card-title"><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h5>
+        <p class="card-text">{{ post.content }}</p>
+        <p class="card-text">投稿者: {{ post.author.username }}</p>
+        <p class="card-text">投稿日時: {{ post.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        <a href="{{ url_for('post_edit', post_id=post.id) }}">編集</a>
+        <a href="{{ url_for('post_delete', post_id=post.id) }}">削除</a>
     </div>
 </div>
 {% endfor %}

@@ -6,9 +6,23 @@ box-sizing: border-box;
 }
 
 body {
-font-family: Arial, sans-serif;
-background-color: #f0f0f0;
-padding: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.navbar-custom {
+    background-color: #74C0FC;
+}
+
+.navbar-custom .navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    padding-left: 20px;
+}
+
+.nav-item .nav-link {
+    color: white;
 }
 
 .container {
@@ -36,11 +50,12 @@ margin-bottom: 0.5rem;
 color: #555;
 }
 
-.btn {
+.center-form .btn {
 display: inline-block;
 padding: 8px 12px;
 margin-top: 10px;
-background-color: #007bff;
+background-color: #74C0FC;
+border-color: #74C0FC;
 color: #fff;
 text-decoration: none;
 border-radius: 4px;
@@ -48,8 +63,21 @@ border: none;
 }
 
 .btn:hover {
-background-color: #0056b3;
+    background-color: #5aa1d4; /* 暗い色 */
+    border-color: #5aa1d4;
 }
+
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-top: 10px;
+    background-color: #74C0FC;
+    border-color: #74C0FC;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    }
 
 .alert {
 padding: 10px;
